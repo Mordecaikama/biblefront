@@ -141,7 +141,8 @@ function Home() {
       <nav>
         <div className='container nav__container'>
           <div className='logo'>
-            <i className='fal fa-acorn'></i>
+            <img src={require('../assets/img/logo.png')} alt='' />
+            {/* <i className='fal fa-acorn'></i> */}
           </div>
 
           <div className='middle'>

@@ -210,12 +210,17 @@ nav .container {
   align-items: center;
   justify-content: space-between;
 
-  padding: 1rem 1rem;
+  /* padding: 1rem 1rem; */
 }
 
 .nav__container .fa-acorn {
   font-size: 1.2rem;
   /* color: white; */
+  cursor: pointer;
+}
+.nav__container .logo {
+  width: 4rem;
+  height: 4rem;
   cursor: pointer;
 }
 
