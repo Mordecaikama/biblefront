@@ -132,10 +132,6 @@ function Home() {
     }
   }
 
-  const handleSidebar = () => {
-    console.log('sidebar clicked')
-  }
-
   return (
     <div>
       <nav>
@@ -200,7 +196,62 @@ function Home() {
       {/* <div>{appdata && JSON.stringify(appdata)}</div> */}
 
       <div className='container main__container'>
-        <aside className={`${menuShow ? 'menushow' : 'close'}`}>
+        <aside className={`sidebar__mobile ${menuShow ? 'menushow' : 'close'}`}>
+          <div className='top'>
+            <div className='logo_img'>
+              <img src={require('../assets/img/logo.png')} alt='' />
+              {/* <i className='fal fa-acorn'></i> */}
+            </div>
+
+            <div className='logo'>
+              <h4>Holy Bible</h4>
+            </div>
+            <span
+              className='material-icons-sharp close'
+              onClick={() => setMenuShow(!menuShow)}
+            >
+              close
+            </span>
+          </div>
+          <div className='sidebar'>
+            <a
+              href='#'
+              className={`side-header ${active.old && 'active'}`}
+              onClick={() => setActive({ ...active, old: !active.old })}
+            >
+              <span className='material-icons-sharp'>library_books</span>
+              <h3>Old Testament</h3>
+              <span className='material-icons-sharp'>keyboard_return</span>
+            </a>
+            {active && active.old && (
+              <Dropdown
+                data={appdata}
+                testament='OT'
+                handleClick={handleChapters}
+              />
+            )}
+            <a
+              href='#'
+              className={`side-header ${active.new && 'active'}`}
+              onClick={() => {
+                setActive({ ...active, new: !active.new })
+              }}
+            >
+              <span className='material-icons-sharp'>library_books</span>
+              <h3>New Testament</h3>
+              <span className='material-icons-sharp'>keyboard_return</span>
+            </a>
+            {active && active.new && (
+              <Dropdown
+                data={appdata}
+                testament='NT'
+                handleClick={handleChapters}
+              />
+            )}
+          </div>
+        </aside>
+
+        <aside>
           <div className='top'>
             <div className='logo'>
               <h4>Holy Bible</h4>
@@ -249,6 +300,7 @@ function Home() {
             )}
           </div>
         </aside>
+
         <main>
           <Mainpage data={bookChapter} />
         </main>
