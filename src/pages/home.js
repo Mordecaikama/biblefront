@@ -3,8 +3,9 @@ import axios from 'axios'
 import Dropdown from '../component/dropdown'
 import Mainpage from '../component/mainpage'
 import { Context } from '../context'
-
+import { Link, Route, Routes } from 'react-router-dom'
 import { API } from '../config'
+import Settings from './settings/settings'
 
 function Home() {
   const [loading, setLoading] = useState(false)
@@ -133,7 +134,7 @@ function Home() {
   }
 
   return (
-    <div>
+    <div className='App'>
       <nav>
         <div className='container nav__container'>
           <div className='logo'>
@@ -192,8 +193,6 @@ function Home() {
           </div>
         </div>
       </nav>
-      {/* <button onClick={() => loadBible()}>press</button> */}
-      {/* <div>{appdata && JSON.stringify(appdata)}</div> */}
 
       <div className='container main__container'>
         <aside className={`sidebar__mobile ${menuShow ? 'menushow' : 'close'}`}>
@@ -214,15 +213,15 @@ function Home() {
             </span>
           </div>
           <div className='sidebar'>
-            <a
-              href='#'
+            <Link
+              to='/'
               className={`side-header ${active.old && 'active'}`}
               onClick={() => setActive({ ...active, old: !active.old })}
             >
               <span className='material-icons-sharp'>library_books</span>
               <h3>Old Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </a>
+            </Link>
             {active && active.old && (
               <Dropdown
                 data={appdata}
@@ -230,8 +229,8 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
-            <a
-              href='#'
+            <Link
+              to='/'
               className={`side-header ${active.new && 'active'}`}
               onClick={() => {
                 setActive({ ...active, new: !active.new })
@@ -240,7 +239,7 @@ function Home() {
               <span className='material-icons-sharp'>library_books</span>
               <h3>New Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </a>
+            </Link>
             {active && active.new && (
               <Dropdown
                 data={appdata}
@@ -248,6 +247,10 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
+          <Link to='/settings' className={`side-header ${active.old && 'active'}`}>
+          <span className="material-icons-sharp">settings</span>
+		<h3>Settings</h3>
+          </Link>
           </div>
         </aside>
 
@@ -264,15 +267,15 @@ function Home() {
             </span>
           </div>
           <div className='sidebar'>
-            <a
-              href='#'
+            <Link
+              to="/"
               className={`side-header ${active.old && 'active'}`}
               onClick={() => setActive({ ...active, old: !active.old })}
             >
               <span className='material-icons-sharp'>library_books</span>
               <h3>Old Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </a>
+            </Link>
             {active && active.old && (
               <Dropdown
                 data={appdata}
@@ -280,8 +283,8 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
-            <a
-              href='#'
+            <Link
+              to='/'
               className={`side-header ${active.new && 'active'}`}
               onClick={() => {
                 setActive({ ...active, new: !active.new })
@@ -290,7 +293,7 @@ function Home() {
               <span className='material-icons-sharp'>library_books</span>
               <h3>New Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </a>
+            </Link>
             {active && active.new && (
               <Dropdown
                 data={appdata}
@@ -298,11 +301,21 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
+
+        <Link to='/settings' className={`side-header ${active.old && 'active'}`}>
+          <span className="material-icons-sharp">settings</span>
+          <h3>Settings</h3>
+          </Link>
           </div>
         </aside>
 
         <main>
-          <Mainpage data={bookChapter} />
+          <Routes>
+            <Route exact path='/' element={<Mainpage data={bookChapter} />} />
+            <Route path='/settings' element={<Settings />} />
+          </Routes>
+        
+         
         </main>
       </div>
     </div>

@@ -290,6 +290,7 @@ aside .sidebar .side-header {
   padding: 0.8rem;
   border-radius: 0;
   border-bottom: 0.1rem solid var(--color-info-dark);
+  z-index: 10;
 }
 aside .sidebar .side-header:hover {
   background: var(--color-info-light);
@@ -467,6 +468,55 @@ nav .middle.top select:focus + .focus {
   border: 2px solid var(--color-primary);
   border-radius: inherit;
 }
+
+
+
+.settings__container .settings__navbar{
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.settings__navbar ul{
+  display: flex;
+  align-items: center;
+}
+
+
+.settings__navbar a{
+  padding: 0.5rem;
+  /* border:1px solid var(--color-info-dark); */
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  position: relative;
+}
+.settings__navbar a:hover{
+  background: var(--color-info-light);
+  color: var(--color-dark);
+}
+
+.settings__navbar a.active{
+  margin-left: 0;
+  background: var(--color-info-dark);
+  border:1px solid var(--color-variant-primary);
+  border-width: 0px 1px 0 1px;
+  color: var(--color-white);
+}
+
+.settings__navbar a.active::before{
+  content: '';
+  width: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 3px;
+  /* background: var(--color-primary-variant); */
+}
+
+
+
+
+
 
 /* MEDIA QUERIES  */
 
