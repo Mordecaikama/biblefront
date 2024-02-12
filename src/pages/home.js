@@ -3,7 +3,6 @@ import axios from 'axios'
 import Dropdown from '../component/dropdown'
 import Mainpage from '../component/mainpage'
 import { Context } from '../context'
-import { Link, Route, Routes } from 'react-router-dom'
 import { API } from '../config'
 import Settings from './settings/settings'
 
@@ -216,15 +215,14 @@ function Home() {
             </span>
           </div>
           <div className='sidebar'>
-            <Link
-              to='/'
+            <a
               className={`side-header ${active.old && 'active'}`}
               onClick={() => setActive({ ...active, old: !active.old })}
             >
               <span className='material-icons-sharp'>library_books</span>
               <h3>Old Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </Link>
+            </a>
             {active && active.old && (
               <Dropdown
                 data={appdata}
@@ -232,8 +230,7 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
-            <Link
-              to='/'
+            <a
               className={`side-header ${active.new && 'active'}`}
               onClick={() => {
                 setActive({ ...active, new: !active.new })
@@ -242,7 +239,7 @@ function Home() {
               <span className='material-icons-sharp'>library_books</span>
               <h3>New Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </Link>
+            </a>
             {active && active.new && (
               <Dropdown
                 data={appdata}
@@ -266,15 +263,14 @@ function Home() {
             </span>
           </div>
           <div className='sidebar'>
-            <Link
-              to='/'
+            <a
               className={`side-header ${active.old && 'active'}`}
               onClick={() => setActive({ ...active, old: !active.old })}
             >
               <span className='material-icons-sharp'>library_books</span>
               <h3>Old Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </Link>
+            </a>
             {active && active.old && (
               <Dropdown
                 data={appdata}
@@ -282,8 +278,7 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
-            <Link
-              to='/'
+            <a
               className={`side-header ${active.new && 'active'}`}
               onClick={() => {
                 setActive({ ...active, new: !active.new })
@@ -292,7 +287,7 @@ function Home() {
               <span className='material-icons-sharp'>library_books</span>
               <h3>New Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </Link>
+            </a>
             {active && active.new && (
               <Dropdown
                 data={appdata}
