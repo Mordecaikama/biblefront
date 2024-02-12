@@ -33,9 +33,10 @@ function Home() {
     const data = isAuthenticated()
     const transl = isAuthenticated('translation')
     const chap = isAuthenticated('chapter')
+    const chaps = isAuthenticated('chapters')
     if (data) {
       setChapter(chap)
-      setChapters(data.length)
+      setChapters(chaps)
       setBook(data[0])
     }
     if (transl) {
@@ -105,6 +106,7 @@ function Home() {
       bookid: book.id,
     })
     if (data) {
+      AddTolocalStorage('chapters', data.length)
       setChapters(data.length)
     }
   }
