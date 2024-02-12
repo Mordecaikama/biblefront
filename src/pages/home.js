@@ -34,8 +34,10 @@ function Home() {
   const loadFromStorage = () => {
     const data = isAuthenticated()
     const transl = isAuthenticated('translation')
+    const chap = isAuthenticated('chapter')
     if (data) {
-      setChapter(data[0].chapterId)
+      setChapter(chap)
+      setChapters(data.length)
       setBook(data[0])
     }
     if (transl) {
@@ -94,7 +96,8 @@ function Home() {
     if (data) {
       // console.log(data)
       setBookChapter(data)
-      AddTolocalStorage(data)
+      AddTolocalStorage('book', data)
+      AddTolocalStorage('chapter', event.target.value)
       setBook(data[0])
     }
   }
@@ -247,10 +250,6 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
-          <Link to='/settings' className={`side-header ${active.old && 'active'}`}>
-          <span className="material-icons-sharp">settings</span>
-		<h3>Settings</h3>
-          </Link>
           </div>
         </aside>
 
@@ -268,7 +267,7 @@ function Home() {
           </div>
           <div className='sidebar'>
             <Link
-              to="/"
+              to='/'
               className={`side-header ${active.old && 'active'}`}
               onClick={() => setActive({ ...active, old: !active.old })}
             >
@@ -301,21 +300,11 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
-
-        <Link to='/settings' className={`side-header ${active.old && 'active'}`}>
-          <span className="material-icons-sharp">settings</span>
-          <h3>Settings</h3>
-          </Link>
           </div>
         </aside>
 
         <main>
-          <Routes>
-            <Route exact path='/' element={<Mainpage data={bookChapter} />} />
-            <Route path='/settings' element={<Settings />} />
-          </Routes>
-        
-         
+          <Mainpage data={bookChapter} />
         </main>
       </div>
     </div>
