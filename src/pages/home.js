@@ -4,7 +4,6 @@ import Dropdown from '../component/dropdown'
 import Mainpage from '../component/mainpage'
 import { Context } from '../context'
 import { API } from '../config'
-import Settings from './settings/settings'
 
 function Home() {
   const [loading, setLoading] = useState(false)
