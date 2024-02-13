@@ -79,6 +79,7 @@ function Home() {
       setBook(data[0])
       allChapters(book)
       AddTolocalStorage('book', data)
+      AddTolocalStorage('chapter', 1)
     }
   }
 
