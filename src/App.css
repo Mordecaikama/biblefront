@@ -267,6 +267,7 @@ nav .right {
 
 div.subnav .middle {
   position: fixed;
+  margin: 0 auto;
   top: 4rem;
   width: 100vw;
   height: 4rem;
@@ -279,11 +280,18 @@ div.subnav .middle {
 div.subnav .middle {
   display: block;
 }
+
+div.subnav .middle h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
 div.subnav .middle .top {
+  margin-top: 0.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 0.5rem;
   align-items: center;
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
 }
 
 nav .middle .top div select,
@@ -308,9 +316,9 @@ div.subnav .middle .top div select::-ms-expand {
 
 nav .middle .top select,
 div.subnav .middle .top select {
-  width: 15%;
-  min-width: 15ch;
-  max-width: 30ch;
+  width: 10%;
+  min-width: 10ch;
+  max-width: 20ch;
   border: 0.5px solid var(--select-border);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
@@ -892,6 +900,13 @@ main .favorite div,
 
   nav .right {
     display: none;
+  }
+
+  nav .middle .top select,
+  div.subnav .middle .top select {
+    width: 15%;
+    min-width: 15ch;
+    max-width: 30ch;
   }
 
   .info__container {

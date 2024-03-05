@@ -138,6 +138,9 @@ function Mainpage({ data, settings, forms, setforms }) {
                   onMouseDown={() => startCounter(col, d?.id)}
                   onMouseUp={stopCounter}
                   onMouseLeave={stopCounter}
+                  onTouchStart={() => startCounter(col, d?.id)}
+                  onTouchMove={stopCounter}
+                  onTouchEnd={stopCounter}
                 >
                   {d.verse}
                 </p>

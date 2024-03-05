@@ -319,11 +319,7 @@ function Home() {
       <div className='subnav'>
         <div className='middle'>
           <div className='top'>
-            {book && (
-              <h2 className='btn btn-variant-text'>
-                {book && book.book && book.book.name}
-              </h2>
-            )}
+            {book && <h4>{book && book.book && book.book.name}</h4>}
             <p>Chapter</p>
             <select value={chapter} onChange={handleChapter('chapter')}>
               <option value={chapter}>{chapter}</option>
