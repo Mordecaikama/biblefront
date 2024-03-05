@@ -26,7 +26,6 @@ function Dropdown({ data, testament, handleClick }) {
             )
           }
         })}
-        
     </div>
   )
 }

@@ -1,8 +1,13 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, createContext } from 'react'
+import axios from 'axios'
 
 const Context = createContext()
 
 function ContextProvider({ children }) {
+  const [user, setUser] = useState(null)
+
+  axios.defaults.withCredentials = true
+
   const isAuthenticated = (key = 'book') => {
     if (localStorage.getItem(key)) {
       return JSON.parse(localStorage.getItem(key))
@@ -15,7 +20,9 @@ function ContextProvider({ children }) {
     localStorage.setItem(key, JSON.stringify(data))
   }
   return (
-    <Context.Provider value={{ isAuthenticated, AddTolocalStorage }}>
+    <Context.Provider
+      value={{ isAuthenticated, AddTolocalStorage, user, setUser }}
+    >
       {children}
     </Context.Provider>
   )
