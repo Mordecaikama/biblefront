@@ -10,14 +10,13 @@ export default function LoginUser({ state, setState }) {
     password: '',
     emailError: '',
     passwordError: '',
+    activateError: '',
     loading: false,
-    redirectToReferer: false,
   })
 
   const { setUser, user } = useContext(Context)
 
-  const { email, password, emailError, passwordError, redirectToReferer } =
-    values
+  const { email, password, emailError, passwordError, activateError } = values
 
   const handleChange = (name) => (event) => {
     // validate = (fieldvalue, name)
@@ -37,11 +36,11 @@ export default function LoginUser({ state, setState }) {
     })
 
     if (res.data?.errors) {
-      // console.log(res.data)
       setValues({
         ...values,
         passwordError: res.data?.errors.password,
         emailError: res.data?.errors.email,
+        activateError: res.data?.errors?.state,
       })
     } else {
       setUser(res.data.user)
@@ -66,6 +65,7 @@ export default function LoginUser({ state, setState }) {
       password: '',
       emailError: '',
       passwordError: '',
+      activateError: '',
     })
   }
 
@@ -80,6 +80,7 @@ export default function LoginUser({ state, setState }) {
         </span>
         <h3>Login</h3>
         <i className='fas fa-user-friends'></i>
+        <span className='eror'>{activateError}</span>
         <form>
           <div className='login-password'>
             <input
