@@ -10,7 +10,6 @@ import Signup from './signup/signup'
 import ResetPassword from './forgotpassword/resetpassword'
 
 function Mainpage({ data, settings, forms, setforms }) {
-  // console.log(!data ? 'data to come' : data)
   const [toplayerState, setToplayerState] = useState({
     favorites: false,
     login: false,
@@ -40,7 +39,6 @@ function Mainpage({ data, settings, forms, setforms }) {
   const [favorites, setFavorites] = useState({})
 
   const startCounter = (favExist, verseId) => {
-    // console.log(verse)
     var ti = 100
     if (intervalRef.current) return
     intervalRef.current = setInterval(() => {
@@ -82,7 +80,6 @@ function Mainpage({ data, settings, forms, setforms }) {
   const handleColorClick = async (color) => {
     const touse = { ...favorites, color }
     setToplayerState({ ...!toplayerState, favorites: !toplayerState.favorites })
-    console.log(touse)
 
     const res = await axios.post(`${API}/favorites`, {
       data: touse,
@@ -100,7 +97,6 @@ function Mainpage({ data, settings, forms, setforms }) {
   }
 
   const saveNotes = async () => {
-    console.log(value, favorites)
     const touse = { ...favorites, notes: value }
 
     setToplayerState({ ...!toplayerState, edit: !toplayerState.edit })
@@ -122,7 +118,7 @@ function Mainpage({ data, settings, forms, setforms }) {
         {diskdata &&
           diskdata.map((d, i) => {
             const col = checkfavorite(d?.id)
-            // console.log(col)
+
             return (
               <div key={i} className='verse'>
                 <span className='v-number'>Verse {d.verseId}: </span>

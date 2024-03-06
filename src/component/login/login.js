@@ -27,10 +27,7 @@ export default function LoginUser({ state, setState }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // clearForms()
     handleFormLogin()
-    // console.log(values)
-    // login()
   }
 
   const handleFormLogin = async () => {

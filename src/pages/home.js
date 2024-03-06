@@ -40,12 +40,9 @@ function Home() {
     reset: false,
   })
 
-  const [notification, setNotification] = useState(false)
-
   const [values, setValues] = useState({ email: '', name: '', error: '' })
 
   const sidebarRef = useRef(null)
-  // console.log(user)
 
   useEffect(() => {
     loadBibleData()
@@ -58,16 +55,6 @@ function Home() {
   useEffect(() => {
     mouseEnterOut()
   }, [])
-
-  useEffect(() => {
-    const timers = setTimeout(() => {
-      setNotification(false)
-      setValues({ ...values, error: '' })
-    }, 5000)
-    return () => clearTimeout(timers)
-
-    // renders when notification is true
-  }, [notification])
 
   const handleSidebar = (e) => {
     if (!sidebarRef.current.contains(e.target)) {
@@ -112,7 +99,7 @@ function Home() {
     if (res.data.error) {
       // console.log(res.data?.error?.email)
       setValues({ ...values, error: res.data?.error?.email })
-      setNotification(true)
+      // setNotification(true)
     } else {
       setUser(res.data.user)
     }
@@ -244,12 +231,6 @@ function Home() {
 
   return (
     <div className='App'>
-      <Notification
-        msg='error'
-        title='Error'
-        subtitle={`${values.error}`}
-        toggle={notification}
-      />
       <nav>
         <div className='container nav__container'>
           <div className='logo'>

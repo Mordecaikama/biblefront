@@ -3,7 +3,6 @@ import { Context } from '../../context'
 import { useContext } from 'react'
 
 function ProfileTopbar({ path }) {
-  // console.log(path.path)
   const { user } = useContext(Context)
   return (
     <div className='report__container'>
