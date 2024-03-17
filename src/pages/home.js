@@ -372,7 +372,8 @@ function Home() {
                 handleClick={handleChapters}
               />
             )}
-            <a
+            <Link
+              to='/'
               className={`side-header ${active.new && 'active'}`}
               onClick={() => {
                 setActive({ ...active, new: !active.new })
@@ -381,7 +382,7 @@ function Home() {
               <span className='material-icons-sharp'>library_books</span>
               <h3>New Testament</h3>
               <span className='material-icons-sharp'>keyboard_return</span>
-            </a>
+            </Link>
             {active && active.new && (
               <Dropdown
                 data={appdata}

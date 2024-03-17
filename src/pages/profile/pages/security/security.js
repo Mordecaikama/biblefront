@@ -73,7 +73,7 @@ function Security() {
   }
   return (
     <div className='container page__container'>
-      <div className='profile-forms settings__form'>
+      <div className='profile-forms settings__form security'>
         <div className='title'>
           <h2>Security</h2>
           {/* <span>{newError}</span> */}

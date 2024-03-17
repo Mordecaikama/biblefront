@@ -53,10 +53,10 @@ export default function LoginUser({ state, setState }) {
     const addr = `${API}/auth/google`
     window.open(addr, '_self')
   }
-  const handleGitClick = async () => {
-    const addr = `${API}/auth/github`
-    window.open(addr, '_self')
-  }
+  // const handleGitClick = async () => {
+  //   const addr = `${API}/auth/github`
+  //   window.open(addr, '_self')
+  // }
 
   function clearForms() {
     setValues({
@@ -141,11 +141,10 @@ export default function LoginUser({ state, setState }) {
           <i className='fa-brands fa-facebook'></i>
           <span>Facebook</span>
         </button> */}
-        <button className='social__btn' onClick={handleGitClick}>
-          {/* <i className='fa-brands fa-linkedin-in'></i> */}
+        {/* <button className='social__btn' onClick={handleGitClick}>
           <img src={require('../../assets/img/git.png')} alt='' />
           <span>GitHub</span>
-        </button>
+        </button> */}
       </div>
     </div>
   )
