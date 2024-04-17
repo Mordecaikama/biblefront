@@ -221,6 +221,14 @@ main .verse span {
 main .verse p {
   cursor: pointer;
   padding: 0.5rem;
+  position: relative;
+}
+
+main .verse p .edit {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.25rem;
 }
 
 main .v-number {
@@ -849,6 +857,92 @@ main .favorite div,
 
 .report__container div:has(> .report__container .active) {
   border-bottom: none;
+}
+
+/* APP SETTINGS  */
+
+.settings {
+  /* border: 2rem solid yellow; */
+}
+
+.settings .settingitem__container {
+  margin: 1rem auto;
+}
+
+.settings p {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0.5rem auto;
+  border-bottom: 1px solid var(--color-dark-variant);
+  /* padding-bottom: 0.25rem; */
+}
+
+.settings .fav_color__palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+  /* align-items: center; */
+  gap: 1.5rem;
+}
+
+.settings .fav_color__palette .font {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  border: 0.1rem solid var(--color-dark-variant);
+  transition: all 0.1s ease-in;
+  width: 5rem;
+}
+.settings .fav_color__palette .font:hover {
+  background: var(--color-info-light);
+}
+
+.settings .settingitem__container .active {
+  /* padding: 1rem; */
+  font-weight: 500;
+  color: var(--color-info-dark);
+  border: 0.3rem solid var(--color-info-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1.25);
+  transition: all 0.3s ease;
+}
+.settings .settingitem__container .active span {
+  margin: 0.25rem;
+}
+
+/* .settings .notes__colors {
+  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+} */
+
+.settings .fav_color__palette div {
+  height: 4rem;
+  width: 4rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.settings .icon__tray {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.settings .icon__tray div {
+  background: rgb(235, 235, 235);
+  border-radius: var(--border-radius-3);
+  border: 0.25rem solid var(--color-info-light);
+}
+
+.settings .icon__tray span {
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--color-dark-variant);
 }
 
 @media screen and (min-width: 768px) {

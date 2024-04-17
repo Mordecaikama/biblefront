@@ -15,6 +15,14 @@ function ProfileTopbar({ path }) {
           <span className='material-icons-sharp'>person</span>
           <h3>Profile</h3>
         </Link>
+        <Link
+          to='/settings/settings'
+          className={path === '/settings/settings' && 'active'}
+          // onClick={() => setState('report')}
+        >
+          <span className='material-icons-sharp'>person</span>
+          <h3>Settings</h3>
+        </Link>
         {user.googleid ? null : (
           <Link
             to='/settings/security'

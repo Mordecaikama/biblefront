@@ -5,6 +5,7 @@ const Context = createContext()
 
 function ContextProvider({ children }) {
   const [user, setUser] = useState(null)
+  const [Settings, setSettings] = useState(null)
 
   axios.defaults.withCredentials = true
 
@@ -21,7 +22,14 @@ function ContextProvider({ children }) {
   }
   return (
     <Context.Provider
-      value={{ isAuthenticated, AddTolocalStorage, user, setUser }}
+      value={{
+        isAuthenticated,
+        AddTolocalStorage,
+        user,
+        setUser,
+        Settings,
+        setSettings,
+      }}
     >
       {children}
     </Context.Provider>

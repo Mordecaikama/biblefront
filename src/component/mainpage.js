@@ -14,6 +14,7 @@ function Mainpage({ data, settings, forms, setforms }) {
     favorites: false,
     login: false,
     info: false,
+    edit: false,
   })
 
   const [values, setValues] = useState({
@@ -91,6 +92,17 @@ function Mainpage({ data, settings, forms, setforms }) {
     }
   }
 
+  const handleNotesClick = (fav, verseId) => {
+    // console.log(fav)
+    setValue(fav[0]?.notes)
+    setFavorites({ id: verseId })
+    setToplayerState({
+      ...toplayerState,
+      info: !toplayerState.info,
+      edit: !toplayerState.edit,
+    })
+  }
+
   const checkfavorite = (id) => {
     const res = user && user?.favorites.filter((item) => item.id === id)
     return res
@@ -98,6 +110,7 @@ function Mainpage({ data, settings, forms, setforms }) {
 
   const saveNotes = async () => {
     const touse = { ...favorites, notes: value }
+    console.log(touse)
 
     setToplayerState({ ...!toplayerState, edit: !toplayerState.edit })
 
@@ -118,7 +131,7 @@ function Mainpage({ data, settings, forms, setforms }) {
         {diskdata &&
           diskdata.map((d, i) => {
             const col = checkfavorite(d?.id)
-
+            console.log(col)
             return (
               <div key={i} className='verse'>
                 <span className='v-number'>Verse {d.verseId}: </span>
@@ -139,6 +152,19 @@ function Mainpage({ data, settings, forms, setforms }) {
                   onTouchEnd={stopCounter}
                 >
                   {d.verse}
+
+                  {col &&
+                    col[0]?.id === d?.id &&
+                    col[0].notes &&
+                    col[0]?.notes !== '<p><br></p>' && (
+                      <span
+                        className='material-icons-sharp edit'
+                        style={{ color: `${user?.config?.iconColor}` }}
+                        onClick={() => handleNotesClick(col, d?.id)}
+                      >
+                        {user?.config?.editIcon}
+                      </span>
+                    )}
                 </p>
               </div>
             )
