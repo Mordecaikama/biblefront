@@ -40,6 +40,7 @@ function Mainpage({ data, settings, forms, setforms }) {
   const [favorites, setFavorites] = useState({})
 
   const startCounter = (favExist, verseId) => {
+    // starts to count and when its 3 sec or more it shows the dialog
     var ti = 100
     if (intervalRef.current) return
     intervalRef.current = setInterval(() => {
@@ -79,8 +80,8 @@ function Mainpage({ data, settings, forms, setforms }) {
   }
 
   const handleColorClick = async (color) => {
+    // toggles verse to favorite color
     const touse = { ...favorites, color }
-    setToplayerState({ ...!toplayerState, favorites: !toplayerState.favorites })
 
     const res = await axios.post(`${API}/favorites`, {
       data: touse,
@@ -92,8 +93,25 @@ function Mainpage({ data, settings, forms, setforms }) {
     }
   }
 
+  const handleUpdate = async (col) => {
+    // for updating settings color when color palette is on
+    const res = await axios.post(`${API}/update`, {
+      _id: user._id,
+      config: { ...user?.config, favColor: col },
+    })
+
+    if (res.data) {
+      setUser(res.data.user)
+    }
+  }
+
+  const handleColorTemplates = (col) => {
+    handleColorClick(col)
+    handleUpdate(col)
+  }
+
   const handleNotesClick = (fav, verseId) => {
-    // console.log(fav)
+    // shows notes tab
     setValue(fav[0]?.notes)
     setFavorites({ id: verseId })
     setToplayerState({
@@ -104,13 +122,29 @@ function Mainpage({ data, settings, forms, setforms }) {
   }
 
   const checkfavorite = (id) => {
+    //checks if paragraph contains favorite
     const res = user && user?.favorites.filter((item) => item.id === id)
     return res
   }
 
+  const handleBeforeFavorite = () => {
+    //checks if colorpalette is true then show it else addfavorite
+    if (user?.config?.colorPalette) {
+      setToplayerState({
+        ...!toplayerState,
+        favorites: !toplayerState.favorites,
+      })
+    } else {
+      // get default settings color
+      // checks if color exists n if clicked it resets it.
+      const mycolor = favorites.exist ? '' : user?.config?.favColor
+      handleColorClick(mycolor)
+      setToplayerState({ ...toplayerState, info: !toplayerState.info })
+    }
+  }
+
   const saveNotes = async () => {
     const touse = { ...favorites, notes: value }
-    console.log(touse)
 
     setToplayerState({ ...!toplayerState, edit: !toplayerState.edit })
 
@@ -125,24 +159,44 @@ function Mainpage({ data, settings, forms, setforms }) {
     }
   }
 
+  const checkFontSize = () => {
+    var filteredArray = settings?.fontSizes.filter(
+      (i) => user?.config?.fontSize in i
+    )
+
+    return filteredArray
+  }
   return (
     <div className='mainpage'>
       <div>
         {diskdata &&
           diskdata.map((d, i) => {
-            const col = checkfavorite(d?.id)
-            console.log(col)
+            const col = checkfavorite(d?.id) //checks if exist
+            const dt = checkFontSize() // puts the right settings
+
             return (
               <div key={i} className='verse'>
                 <span className='v-number'>Verse {d.verseId}: </span>
                 <p
+                  className={`${dt && dt[0]}`}
                   style={{
                     background: `${
-                      col && col[0]?.id === d?.id
+                      col &&
+                      col[0]?.id &&
+                      col[0]?.color &&
+                      !user?.config?.oneColorForAllFavorites
                         ? col[0]?.color
+                        : col &&
+                          col[0]?.id &&
+                          col[0]?.color?.length > 0 &&
+                          user?.config?.oneColorForAllFavorites
+                        ? user?.config?.favColor
                         : 'transparent'
                     }`,
                     color: `${col && col[0]?.color ? 'white' : 'black'}`,
+                    fontSize: `${
+                      dt && dt[0] ? dt[0][user?.config?.fontSize] : null
+                    }`,
                   }}
                   onMouseDown={() => startCounter(col, d?.id)}
                   onMouseUp={stopCounter}
@@ -179,7 +233,7 @@ function Mainpage({ data, settings, forms, setforms }) {
             setState={setToplayerState}
             settings={settings}
             user={user}
-            handleColorClick={handleColorClick}
+            handleColorClick={handleColorTemplates}
           />
         }
       />
@@ -194,6 +248,7 @@ function Mainpage({ data, settings, forms, setforms }) {
             value={value}
             setValue={setValue}
             saveNotes={saveNotes}
+            handleBeforeFavorite={handleBeforeFavorite}
           />
         }
       />

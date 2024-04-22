@@ -6,12 +6,11 @@ import 'react-quill/dist/quill.snow.css'
 export default function Notes({
   state,
   setState,
-  settings,
-  handleColorClick,
   favExist,
   value,
   setValue,
   saveNotes,
+  handleBeforeFavorite,
 }) {
   const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'], // toggled buttons
@@ -56,14 +55,14 @@ export default function Notes({
           <span
             style={{ color: `${favExist?.exist}` }}
             className='material-icons-sharp'
-            onClick={() => setState({ ...!state, favorites: !state.favorites })}
+            onClick={handleBeforeFavorite}
           >
             favorite
           </span>
         ) : (
           <span
             className='material-symbols-outlined'
-            onClick={() => setState({ ...!state, favorites: !state.favorites })}
+            onClick={handleBeforeFavorite}
           >
             favorite
           </span>

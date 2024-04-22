@@ -50,6 +50,7 @@ function Settings({ settings }) {
 
   return (
     <div className='container page__container settings'>
+      {/* {JSON.stringify(data)} */}
       <div className='settingitem__container'>
         <p>Font Size</p>
         <div className='fav_color__palette'>
@@ -125,7 +126,33 @@ function Settings({ settings }) {
           })}
         </div>
       </div>
-      <button className='btn' onClick={handleSubmit}>
+
+      
+      <div className='settingitem__container'>
+        <p>Toggle between color palette</p>
+
+        <label class='switch'>
+            <input
+              type='checkbox'
+              checked={data?.colorPalette}
+              onChange={() => handleChange({ colorPalette: !data?.colorPalette })}
+            />
+            <span class='slider round'></span>
+          </label>
+      </div>
+      <div className='settingitem__container'>
+        <p>Toggle between Using One Color for All Favorites or multiple</p>
+
+        <label class='switch'>
+            <input
+              type='checkbox'
+              checked={data?.oneColorForAllFavorites}
+              onChange={() => handleChange({ oneColorForAllFavorites: !data?.oneColorForAllFavorites })}
+            />
+            <span class='slider round'></span>
+          </label>
+      </div>
+      <button className='btn saveBtn' onClick={handleSubmit}>
         save
       </button>
 

@@ -1,4 +1,9 @@
 function Info({ state, setState, settings, handleColorClick, user }) {
+
+  const handleMe = (col) =>{
+    handleColorClick(col)
+    setState({ ...state, favorites: !state.favorites })
+  }
   return (
     <div className={`info__container ${state && 'showinfcont'}`}>
       <div className='top'>
@@ -12,7 +17,7 @@ function Info({ state, setState, settings, handleColorClick, user }) {
       <div className='default'>
         <div
           style={{ backgroundColor: `${user && user?.color}` }}
-          onClick={() => handleColorClick(user && user?.color)}
+          onClick={() => handleMe(user && user?.color)}
         >
           <span>Default</span>
         </div>
@@ -24,7 +29,7 @@ function Info({ state, setState, settings, handleColorClick, user }) {
               style={{
                 backgroundColor: `${color ? color : 'white'}`,
               }}
-              onClick={() => handleColorClick(color)}
+              onClick={() => handleMe(color)}
             >
               {!color && 'Unlike'}
             </div>

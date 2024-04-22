@@ -56,6 +56,8 @@ function Home() {
     mouseEnterOut()
   }, [])
 
+  
+
   const handleSidebar = (e) => {
     if (!sidebarRef.current.contains(e.target)) {
       setMenuShow(false)
